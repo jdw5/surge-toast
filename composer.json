@@ -11,7 +11,10 @@
     "autoload": {
         "psr-4": {
             "Jdw5\\SurgeToast\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "authors": [
         {
