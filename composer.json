@@ -1,0 +1,24 @@
+{
+    "name": "jdw5/surge-toast",
+    "description": "A Vue 3 + Inertia plugin to render headless toast components.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jdw5\\SurgeToast\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Joshua Wallace",
+            "email": "josh@joshua-wallace.com",
+            "homepage": "https://joshua-wallace.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
