@@ -13,11 +13,22 @@ class ToastData implements Serializable
 
     public function __construct(
         public string $message,
-        public ?string $type = ToastType::DEFAULT->value,
-        public ?int $duration = self::DEFAULT_DURATION,
         public ?string $title,
         public ?mixed $custom,
+        public ?string $type = ToastType::DEFAULT->value,
+        public ?int $duration = self::DEFAULT_DURATION,
     ) {}
+
+    public static function from(array $array) 
+    {
+        return new self(
+            message: $array['message'],
+            type: $array['type'] ?? ToastType::DEFAULT->value,
+            duration: $array['duration'] ?? self::DEFAULT_DURATION,
+            title: $array['title'] ?? null,
+            custom: $array['custom'] ?? null,
+        );
+    }
 
     public function setType(ToastType|string $type): self
     {
