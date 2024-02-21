@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Jdw5\SurgeToast;
 
 use Jdw5\SurgeToast\Enums\ToastType;
@@ -7,17 +9,19 @@ use Serializable;
 
 class ToastData implements Serializable
 {
+    const DEFAULT_DURATION = 3000;
+
     public function __construct(
         public string $message,
         public ?string $type = ToastType::DEFAULT->value,
-        public ?int $duration = 3000,
+        public ?int $duration = self::DEFAULT_DURATION,
         public ?string $title,
         public ?mixed $custom,
     ) {}
 
     public function setType(ToastType|string $type): self
     {
-        $this->type = $type instanceof ToastType ? $type->value : $type;
+        $this->type = $type instanceof ToastType ? $type->value : (in_array($type, ToastType::cases()) ? $type : ToastType::DEFAULT->value);
         return $this;
     }
 
@@ -43,7 +47,7 @@ class ToastData implements Serializable
         ]);
     }
 
-    public function unserialize($serialized): void
+    public function unserialize(string $serialized): void
     {
         $data = unserialize($serialized);
         $this->type = $data['type'];

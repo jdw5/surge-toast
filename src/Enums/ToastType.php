@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Jdw5\SurgeToast\Enums;
 
 enum ToastType: string

@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Jdw5\SurgeToast;
 
-use Illuminate\Support\Traits\Macroable;
 use Illuminate\Contracts\Session\Session;
 use Jdw5\SurgeToast\Enums\ToastType;
 
 class Toast
 {
-    use Macroable;
-    // I want to be able to do toast(options) or toast()->type(options)
+    const FLASH_TO = 'toast';
 
     protected function __construct(
         protected Session $session
@@ -17,7 +17,7 @@ class Toast
 
     public function send(ToastData $data): void
     {
-        $this->session->flash('toast', $data);
+        $this->session->flash(self::FLASH_TO, $data);
     }
 
     public function success(ToastData $data): void
@@ -30,7 +30,7 @@ class Toast
         $this->send($data->setType(ToastType::ERROR));
     }
 
-    public function warning(ToastData $data): void
+    public function warn(ToastData $data): void
     {
         $this->send($data->setType(ToastType::WARNING));
     }
